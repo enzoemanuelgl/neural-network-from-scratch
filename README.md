@@ -24,15 +24,28 @@ E = (w*x + b - y)**2
 
 Conferência à mão: `E = (wx + b - y)²`, então `∂E/∂w = 2(wx + b - y)·x = 2(-6)(2) = -24` e `∂E/∂b = 2(wx + b - y) = -12`.
 
+## Estrutura
+
+```
+rede_neural/     o motor e, depois, as peças da rede neural
+  value.py       a classe Value: +, -, *, ** e backward()
+explicacoes/     material para apresentar o projeto
+  Explicação Motor Autodiff.ipynb
+  grafo_visual.py   desenhos e figuras interativas usados pelo notebook
+```
+
 ## Progresso
 
-- [ ] Etapa 1: esqueleto da classe (`__init__`, `__repr__`)
-- [ ] Etapas 2–8
+- [x] Motor: soma, subtração, multiplicação, potência e `backward()`
+- [ ] Ativação (`tanh` ou `relu`), divisão e exponencial
+- [ ] Neurônio, camada e rede completa
 
 ## Como rodar
 
-Requer Python 3.10+ e nenhuma dependência externa.
+O motor não tem nenhuma dependência externa:
 
 ```bash
-python value.py
+python rede_neural/value.py
 ```
+
+O notebook de explicação precisa do Jupyter e do `ipywidgets` (os dois já vêm no Anaconda). Abra `explicacoes/Explicação Motor Autodiff.ipynb` e use **Run All**.
