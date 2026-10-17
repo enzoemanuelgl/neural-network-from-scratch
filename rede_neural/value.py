@@ -6,7 +6,7 @@ class Value:
         self.grad = 0.0
         self._prev = set(_children)
         self._op = _op
-        self._backward = lambda: None
+        self._backward = lambda: None # Função que inicialmente não faz nada
 
 
 
@@ -123,6 +123,7 @@ class Value:
             if v not in visitados:
                 visitados.add(v)
                 for pai in v._prev:
+                    # Entra na recursão até não possuir mais elementos anteriores ( que geraram )
                     constroi(pai)
                 ordem.append(v)
 
