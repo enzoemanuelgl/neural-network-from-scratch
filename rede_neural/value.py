@@ -6,14 +6,13 @@ class Value:
         self.grad = 0.0
         self._prev = set(_children)
         self._op = _op
-        self._backward = lambda: None # Função que inicialmente não faz nada
+        self._backward = lambda: None # Função que inicialmente não faz nada - serve pra que eu possa definir o backward específico de cada um depois mantendo nenhum cálculo ao chegar nos nós-folha
 
 
 
     # O Que aparecerá quando printar
     def __repr__(self):
         return f"Value(data={self.data}, grad={self.grad})"
-
 
 
     #   Soma    
@@ -118,12 +117,14 @@ class Value:
     def backward(self):
         ordem = []
         visitados = set()
-
+        #   DFS que anexa cada nó só depois que TODOS os operandos dele já entraram na lista
+        #   Isso garante que, quando inverter, todos os elementos que usam o valor "x" no cálculo
+        #   já terão passado o gradiente para ele
+        #   Assim, ele pode repassar para os operandos dele ( que o geraram )
         def constroi(v):
             if v not in visitados:
                 visitados.add(v)
                 for pai in v._prev:
-                    # Entra na recursão até não possuir mais elementos anteriores ( que geraram )
                     constroi(pai)
                 ordem.append(v)
 
