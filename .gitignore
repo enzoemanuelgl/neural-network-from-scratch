@@ -2,18 +2,26 @@
 __pycache__/
 *.py[cod]
 .pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+build/
+dist/
 
 # Jupyter
 .ipynb_checkpoints/
+Untitled*.ipynb
 
-# Ambientes virtuais
+# Ambientes virtuais e variáveis locais
 .venv/
 venv/
 env/
+.env
 
 # Editores / SO
 .vscode/
 .idea/
+*.swp
 Thumbs.db
 Desktop.ini
 .DS_Store
